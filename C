@@ -1,0 +1,18 @@
+#include <iostream>
+
+int main() {
+    long long int num, factorial = 1;
+
+    std::cout << "Enter the number: " << std::endl;
+    std::cin >> num;
+
+    for (int i = 1; i <= num; i++) {
+        factorial = factorial * i;
+    }
+
+    std::cout << "Factorial = " << factorial;
+
+    return 0;
+}
+
+For this give me a front end
