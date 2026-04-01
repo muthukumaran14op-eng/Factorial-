@@ -1,0 +1,44 @@
+#include <QApplication>
+#include <QWidget>
+#include <QVBoxLayout>
+#include <QLabel>
+#include <QLineEdit>
+#include <QPushButton>
+#include <QString>
+
+int main(int argc, char *argv[]) {
+    QApplication app(argc, argv);
+
+    // Main window
+    QWidget window;
+    window.setWindowTitle("Factorial Calculator");
+    window.setFixedSize(300, 200);
+
+    // Layout
+    QVBoxLayout *layout = new QVBoxLayout(&window);
+
+    // Widgets
+    QLabel *label = new QLabel("Enter a number:");
+    QLineEdit *input = new QLineEdit();
+    QPushButton *button = new QPushButton("Calculate");
+    QLabel *result = new QLabel("Factorial = ");
+
+    // Add to layout
+    layout->addWidget(label);
+    layout->addWidget(input);
+    layout->addWidget(button);
+    layout->addWidget(result);
+
+    // Button click logic
+    QObject::connect(button, &QPushButton::clicked, [&]() {
+        long long int num = input->text().toLongLong();
+        long long int factorial = 1;
+        for (int i = 1; i <= num; i++) {
+            factorial *= i;
+        }
+        result->setText("Factorial = " + QString::number(factorial));
+    });
+
+    window.show();
+    return app.exec();
+}
